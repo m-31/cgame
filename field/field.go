@@ -57,14 +57,14 @@ func Frame(f *Field) {
 }
 
 func Square(f *Field, x1, y1, x2, y2 int) {
-	HLine(f, y1, x1 + 1, x2 - 1, byte("-"[0]))
-	HLine(f, y2, x1 + 1, x2 - 1, byte("-"[0]))
-	VLine(f, x1, y1 + 1, y2 - 1, byte("|"[0]))
-	VLine(f, x2, y1 + 1, y2 - 1, byte("|"[0]))
-	Set(f, x1, y1,  byte("+"[0]))
-	Set(f, x1, y2,  byte("+"[0]))
-	Set(f, x2, y1,  byte("+"[0]))
-	Set(f, x2, y2,  byte("+"[0]))
+	HLine(f, y1, x1 + 1, x2 - 1, '-')
+	HLine(f, y2, x1 + 1, x2 - 1, '-')
+	VLine(f, x1, y1 + 1, y2 - 1, '|')
+	VLine(f, x2, y1 + 1, y2 - 1, '|')
+	Set(f, x1, y1,  '+')
+	Set(f, x1, y2,  '+')
+	Set(f, x2, y1,  '+')
+	Set(f, x2, y2,  '+')
 }
 
 func Get(f *Field, x, y int) byte {
