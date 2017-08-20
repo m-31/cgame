@@ -2,7 +2,7 @@
 
 VERSION=$(shell git rev-parse HEAD)
 
-build: cgame-linux-amd64 cgame-darwin-amd64 cgame-windows-amd64.exe cgame-windows-386.exe
+build: cgame-linux-amd64 cgame-linux-arm cgame-darwin-amd64 cgame-windows-amd64.exe cgame-windows-386.exe
 
 .get-deps: *.go
 	go get -t -d -v ./...

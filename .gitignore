@@ -15,5 +15,6 @@
 
 .idea/
 .get-deps
-*_amd64
-*_darwin
+*-amd64
+*-arm
+*.exe
