@@ -11,7 +11,7 @@ type Field struct {
   	Matrix        [][]byte
 }
 
-const EMPTY = 32
+const EMPTY = ' '
 
 func New(rows int, columns int) *Field {
 	var f Field
@@ -28,6 +28,39 @@ func New(rows int, columns int) *Field {
 	f.Matrix = matrix
 	Frame(&f)
 	return &f
+}
+
+func Get(f *Field, x, y int) byte {
+	if NotInField(f, x, y) {
+		panic(fmt.Sprintf("you tried to get at (%d, %d)", x, y))
+	}
+	return f.Matrix[f.Rows- 1 - y ][x]
+}
+
+func Set(f *Field, x, y int, v byte) {
+	if NotInField(f, x, y) {
+		panic(fmt.Sprintf("you tried to write at (%d, %d)", x, y))
+	}
+	f.Matrix[f.Rows- 1 - y][x] = v
+}
+
+func Delete(f *Field, x, y int) {
+	Set(f, x, y, EMPTY)
+}
+
+func NotInField(f *Field, x, y int) bool {
+	return x >= f.Columns || y >= f.Rows || x < 0 || y < 0
+}
+
+func InField(f *Field, x, y int) bool {
+	return !NotInField(f, x, y)
+}
+
+func Empty(f *Field, x, y int) bool {
+	if NotInField(f, x, y) {
+		return false
+	}
+	return Get(f, x, y) == EMPTY
 }
 
 func VLine(f *Field, x, y1, y2 int, v byte) {
@@ -65,35 +98,6 @@ func Square(f *Field, x1, y1, x2, y2 int) {
 	Set(f, x1, y2,  '+')
 	Set(f, x2, y1,  '+')
 	Set(f, x2, y2,  '+')
-}
-
-func Get(f *Field, x, y int) byte {
-	if NotInField(f, x, y) {
-		panic(fmt.Sprintf("you tried to get at (%d, %d)", x, y))
-	}
-	return f.Matrix[f.Rows- 1 - y ][x]
-}
-
-func Set(f *Field, x, y int, v byte) {
-	if NotInField(f, x, y) {
-		panic(fmt.Sprintf("you tried to write at (%d, %d)", x, y))
-	}
-	f.Matrix[f.Rows- 1 - y][x] = v
-}
-
-func NotInField(f *Field, x, y int) bool {
-	return x >= f.Columns || y >= f.Rows || x < 0 || y < 0
-}
-
-func InField(f *Field, x, y int) bool {
-	return !NotInField(f, x, y)
-}
-
-func Empty(f *Field, x, y int) bool {
-	if NotInField(f, x, y) {
-		return false
-	}
-	return Get(f, x, y) == EMPTY
 }
 
 // draw field

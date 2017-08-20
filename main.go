@@ -27,10 +27,10 @@ func initialize(rows int, columns int) {
 
 func movePlayer(deltaX int, deltaY int) {
 	if field.Empty(f, player.x + deltaX, player.y + deltaY) {
-		field.Set(f, player.x, player.y, 32)
+		field.Delete(f, player.x, player.y)
  		player.x += deltaX
 		player.y += deltaY
-		field.Set(f, player.x, player.y, 64 + 24)
+		field.Set(f, player.x, player.y, 'X')
 	}
 }
 
