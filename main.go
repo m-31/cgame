@@ -20,8 +20,8 @@ var (
 func initialize(rows int, columns int) {
 	term.Clear(term.ColorWhite, term.ColorBlack)
 	f = field.New(rows, columns)
-	player.x = 2
-	player.y = 2
+	player.x = columns / 2
+	player.y = rows / 2
 	movePlayer(0, 0)
 }
 
@@ -36,8 +36,9 @@ func movePlayer(deltaX int, deltaY int) {
 
 // clear screen and draw field
 func reset() {
-	term.Sync() // cosmestic purpose
+	term.Sync()
 	field.Draw(f)
+	fmt.Println("Press cursor keys to navigate, exit with <ESC>.")
 }
 
 func keyPressLoop() {
