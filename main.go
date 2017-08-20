@@ -5,7 +5,7 @@ package main
 import (
 	"fmt"
 	term "github.com/nsf/termbox-go"
-	"field"
+	"github.com/m-31/cgame/field"
 )
 
 type Player struct {
@@ -18,6 +18,7 @@ var (
 )
 
 func initialize(rows int, columns int) {
+	term.Clear(term.ColorWhite, term.ColorBlack)
 	f = field.New(rows, columns)
 	player.x = 2
 	player.y = 2
@@ -153,6 +154,7 @@ keyPressListenerLoop:
 }
 
 func main() {
+	println("hei")
 	initialize(15, 46)
 	keyPressLoop()
 }
