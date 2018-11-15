@@ -1,6 +1,6 @@
 // Copyright 2017 Michael Meyling. All rights reserved.
 
-package field
+package main
 
 import (
 	"fmt"

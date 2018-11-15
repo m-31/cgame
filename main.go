@@ -5,7 +5,6 @@ package main
 import (
 	"fmt"
 	term "github.com/nsf/termbox-go"
-	"github.com/m-31/cgame/field"
 )
 
 type Player struct {
@@ -14,30 +13,30 @@ type Player struct {
 
 var (
 	player Player
-	f *field.Field
+	f *Field
 )
 
 func initialize(rows int, columns int) {
 	term.Clear(term.ColorWhite, term.ColorBlack)
-	f = field.New(rows, columns)
+	f = New(rows, columns)
 	player.x = columns / 2
 	player.y = rows / 2
 	movePlayer(0, 0)
 }
 
 func movePlayer(deltaX int, deltaY int) {
-	if field.Empty(f, player.x + deltaX, player.y + deltaY) {
-		field.Delete(f, player.x, player.y)
+	if Empty(f, player.x + deltaX, player.y + deltaY) {
+		Delete(f, player.x, player.y)
  		player.x += deltaX
 		player.y += deltaY
-		field.Set(f, player.x, player.y, 'X')
+		Set(f, player.x, player.y, 'X')
 	}
 }
 
 // clear screen and draw field
 func reset() {
 	term.Sync()
-	field.Draw(f)
+	Draw(f)
 	fmt.Println("Press cursor keys to navigate, exit with <ESC>.")
 }
 
